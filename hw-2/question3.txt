@@ -1,0 +1,40 @@
+# Recursive function to calculate the sum of money for each combination 
+# The function assumes that the change of the max_combination variable can be retrieved
+
+func combinations(money_set, weight_set, index_combination, index, target_weight, max_sum, max_combination):
+  if(index == n):
+    # sums all of the elements of the weight_set whose indexes are included in the index_combination
+    weight_sum = sum(weight_set, index_combination)
+
+    # if the weight of this combination is lower than the most weight the thief can hold (target_weight)
+    # then we calculate the money that the thief made
+    if(weight_sum <= target_weight):
+      # sums all of the elements of the money_set whose index are included in the index_combination
+      money_sum = sum(money_set, index_combination)
+      
+      # if the money made for this combination is greater than the money made for the combinations preceding,
+      # update the max money made, and the combination of indices that made the max money
+      if(money_sum >= max_sum):
+        max_sum = money_sum
+        max_combination = index_combination 
+
+  else:
+    # either adds the current index to the index combination set, and moves to the next index
+    # the notation [index_combination + index] refers to creating a list where I am appending the value 'index' to the list index_combination
+    combinations(money_set, weight_set, [index_combination + index], index + 1, target_weight, max_sum, max_combination)
+
+    # or moves to the next index, without moving to the index combination set
+    combinations(money_set, weight_set, [index_combination], index + 1, target_weight, max_sum, max_combination)
+
+
+# Function call would look like this
+let money_set = ...
+let weight_set = ...
+let target_weight = ... 
+let max_combination = []
+
+# Assuming we are zero indexing
+combinations(money_set, weight_set, [], 0, target_weight, -1, max_combination)
+# our max combination is now in our max_combination variable
+
+
