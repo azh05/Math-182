@@ -3,9 +3,12 @@
 import math
 import random
 
+MAX_INT = 10**10
+SEED = 10
+
 def solution(L, k):
     # Choose a random starting point
-    random.seed(10)
+    random.seed(SEED)
 
     n = len(L)
     startIdx = random.randint(0, n - 1)
@@ -20,7 +23,7 @@ def solution(L, k):
         new_center = None
 
         for point in L:
-            min_dist_to_c = 10**10
+            min_dist_to_c = MAX_INT
 
             # loop through all the centers currently in our list
             for c in centers:
@@ -42,7 +45,7 @@ def solution(L, k):
     max_min = 0
 
     for point in L:
-        min_dist = 10**10
+        min_dist = MAX_INT
         for center in centers:
             min_dist = min(min_dist, math.dist(point, center))
 

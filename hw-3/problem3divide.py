@@ -3,6 +3,8 @@
 import math
 from operator import itemgetter
 
+MAX_INT = 10**10
+
 # initally sort the list by x and y separately
 # Px is L sorted by the x element in the tuple
 # Py is L sorted by the y element 
@@ -20,7 +22,7 @@ def recurse(Px, Py):
     # if the size of the set is less than or equal to 3, don't recurse anymore and find the minimum of the points
     n = len(Px)
     if n <= 3:
-        min_dist = 10**10
+        min_dist = MAX_INT
         min_tuple_list = []
 
         # At max, 3 operations, so O(1)
@@ -84,7 +86,7 @@ def recurse(Px, Py):
     
     # find the minimum distance in Py_filtered, by looping through 
     # This is also O(n) since Py_filtered is sorted 
-    min_dist_Py_filtered = 10**10
+    min_dist_Py_filtered = MAX_INT
     min_dist_tuples_Py = []
 
     for i in range(1, len(Py_filtered)):
